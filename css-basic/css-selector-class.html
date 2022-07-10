@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>CSS 선택자 - 클래스 선택자</title>
+
+    <style>
+        /* 클래스명을 이용해 스타일을 정의하기 위해 클래스 선택자 사용 */
+        h1 {
+            background-color: blue;
+        }
+
+        .mystyle {
+            color: red;
+            font-size: 50px;
+
+        }
+
+        .yourstyle {
+            color: gray;
+
+        }
+
+        .ourstyle {
+            color: yellowgreen
+        }
+
+        .container {
+            margin: 50px;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body class="container">
+    <!-- 
+        태그 유형과 상관없이 태그에 클래스 속성으로 클래스명을 지정하고
+        지정된 클래스명에 대해 스타일을 일괄 적용하는 방식 
+    -->
+    <h1 class="mystyle">CSS 선택자 - 클래스 선택자로 스타일 적용하기</h1>
+
+    <p class="mystyle">
+        클래스 선택자를 이용해 HTML 태그들을 선택하여 스타일을 적용
+    </p>
+
+    <hr>
+
+    <div>
+        div 태그는 영역을 나타내는 태그이다
+    </div>
+
+    <br>
+    <br>
+    <div class="yourstyle">
+        div 태그는 영역을 나타내는 태그이다
+    </div>
+
+    <p class="ourstyle">
+        클래스 선택자를 이용해 HTML 태그들을 선택하여 스타일을 적용
+    </p>
+
+</body>
