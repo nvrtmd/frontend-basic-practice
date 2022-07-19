@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Basic</title>
+</head>
+
+<body>
+    <h1 id="title">JavaScript Basic8 - 다양한 함수 사용법</h1>
+
+    <hr>
+
+    <script>
+        // 전통적인 함수 선언 및 사용
+        function add1(a, b) {
+            let c = a + b;
+            return c;
+        };
+
+        let result1 = add1(1, 2);
+        console.log(result1);
+
+        /*
+            익명함수 선언 및 사용
+                - 함수 생성 후 바로 변수에 할당하고 호출하여 사용 가능
+        */
+        var anonymousFunction = function (a, b) {
+            return a * b;
+        };
+
+        var result2 = anonymousFunction(4, 5);
+        console.log(result2);
+
+        /*
+            arrow 함수 선언 및 사용
+                - 함수 내 return 구문만 존재할 시 생략 가능
+        */
+        const arrowFunction1 = (a, b) => {
+            const answer = a - b;
+            return answer
+        };
+
+        const arrowFunction2 = (a, b) => a - b;
+
+        console.log(arrowFunction1(10, 5));
+        console.log(arrowFunction2(20, 5));
+    </script>
+</body>
+
+</html>
