@@ -4,28 +4,43 @@
  * Module dependencies.
  */
 
+// app: 실제 동작하는 node application
 var app = require("../app");
-var debug = require("debug")("node-basic-project:server");
+
+// 서버 측에서 디버깅 환경을 구성해주는 debug node 패키지를 참조
+var debug = require("debug")("express-project-2:server");
+
+// node 프레임워크에서 제공해주는 http 웹서버 객체를 참조
 var http = require("http");
 
 /**
  * Get port from environment and store in Express.
  */
 
+/*
+  localhost:3000의 포트 번호(3000)을 지정하는 코드
+    - 포트 변경: 디폴트 포트를 변경하면 가능
+*/
 var port = normalizePort(process.env.PORT || "3000");
+
+// 상단에서 가져온 node application의 서비스 포트 번호를 3000번으로 세팅
 app.set("port", port);
 
 /**
  * Create HTTP server.
  */
 
+// http 객체를 통해 웹 서버를 생성하며 app을 서버를 통해 서비스
 var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
+// 해당 서버의 통신 포트 지정
 server.listen(port);
+
+// 웹 서버에 에러 발생 시 해당 에러를 처리할 에러 핸들러로 onError 함수를 지정
 server.on("error", onError);
 server.on("listening", onListening);
 
@@ -79,6 +94,7 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 
+// 요청 들어올 때 마다 모니터링
 function onListening() {
   var addr = server.address();
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
