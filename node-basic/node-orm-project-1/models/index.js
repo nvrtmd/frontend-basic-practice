@@ -9,9 +9,7 @@ const Sequelize = require("sequelize");
 const env = process.env.NODE_ENV || "development";
 
 // db 연결 환경 설정 정보
-const config = require(path.join(__dirname, "..", "config", "config.json"))[
-  env
-];
+const config = require(path.join(__dirname, "..", "config", "config.js"))[env];
 
 // db 객체 생성
 const db = {};
@@ -34,7 +32,7 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 // 회원 모델 모듈 파일 참조 및 db 속성 정의
-// db.Member = require("./member.js")(sequelize, Sequelize);
+db.Member = require("./member.js")(sequelize, Sequelize);
 
 // db 객체 외부로 노출
 module.exports = db;

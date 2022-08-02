@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
-dotenv.config();
+require("dotenv").config();
+const env = process.env;
 
 const development = {
   username: process.env.USER_NAME,
@@ -25,4 +25,4 @@ const test = {
   dialect: "mysql",
 };
 
-export default { development, production, test };
+module.exports = { development, production, test };
