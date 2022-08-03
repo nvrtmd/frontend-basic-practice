@@ -32,4 +32,43 @@ router.get("/list", function (req, res, next) {
     });
 });
 
+/* 
+    회원 신규 등록 페이지 조회
+        - 호출 주소: http://localhost:3000/members/create
+*/
+router.get("/create", function (req, res, next) {
+  res.render("members/create");
+});
+
+/* 
+    회원 신규 등록 처리
+        - 호출 주소: http://localhost:3000/members/create
+*/
+router.post("/create", function (req, res, next) {
+  const userid = req.body.userid;
+  const username = req.body.username;
+
+  /*
+    DB에 입력할 json 데이터 생성
+      - 등록할 데이터의 속성은 해당 member 모델의 속성명과 동일해야 함
+  */
+  const memberData = {
+    userid,
+    username,
+  };
+
+  /*
+    신규 회원 DB 등록 처리
+  */
+  db.Member.create(memberData)
+    .then((savedMember) => {
+      console.log("신규 저장된 데이터: ", savedMember);
+    })
+    .catch((err) => {
+      next(err);
+    });
+
+  res.redirect("/members/list");
+});
+
 module.exports = router;
