@@ -71,4 +71,21 @@ router.post("/create", function (req, res, next) {
   res.redirect("/members-sync/list");
 });
 
+/* 
+    회원 정보 수정/삭제 페이지 조회
+        - 호출 주소: http://localhost:3000/members-sync/modify/:id
+*/
+router.get("/modify/:id", function (req, res, next) {
+  /*
+    와일드카드 방식으로 전달된 사용자 고유 번호 정보 수집
+      - 해당 번호로 단일 사용자 정보 불러오기 -> findOne() 메소드 사용
+  */
+  const userId = req.params.id;
+
+  db.Member.findOne({ where: { id: userId } }).then((memberData) => {
+    console.log("단일 회원 정보: ", memberData);
+    res.render("members-sync/modify", { member: memberData });
+  });
+});
+
 module.exports = router;
