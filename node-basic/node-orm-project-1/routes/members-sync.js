@@ -14,7 +14,7 @@ var db = require("../models/index");
 
 /* 
     회원 목록 전체 조회
-        - 호출 주소: http://localhost:3000/members/list
+        - 호출 주소: http://localhost:3000/members-sync/list
 */
 router.get("/list", function (req, res, next) {
   /* 
@@ -25,7 +25,7 @@ router.get("/list", function (req, res, next) {
   db.Member.findAll()
     .then((result) => {
       console.log("전체 회원 목록: ", result);
-      res.render("members/list", { members: result });
+      res.render("members-sync/list", { members: result });
     })
     .catch((err) => {
       next(err);
@@ -34,15 +34,15 @@ router.get("/list", function (req, res, next) {
 
 /* 
     회원 신규 등록 페이지 조회
-        - 호출 주소: http://localhost:3000/members/create
+        - 호출 주소: http://localhost:3000/members-sync/create
 */
 router.get("/create", function (req, res, next) {
-  res.render("members/create");
+  res.render("members-sync/create");
 });
 
 /* 
     회원 신규 등록 처리
-        - 호출 주소: http://localhost:3000/members/create
+        - 호출 주소: http://localhost:3000/members-sync/create
 */
 router.post("/create", function (req, res, next) {
   const userid = req.body.userid;
@@ -68,7 +68,7 @@ router.post("/create", function (req, res, next) {
       next(err);
     });
 
-  res.redirect("/members/list");
+  res.redirect("/members-sync/list");
 });
 
 module.exports = router;

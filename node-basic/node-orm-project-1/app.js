@@ -34,7 +34,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
 // 동기 처리 방식의 회원 정보 관리 routing 파일 기본 url 주소 설정
-app.use("/members", membersSyncRouter);
+app.use("/members-sync", membersSyncRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
