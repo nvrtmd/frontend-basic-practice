@@ -24,7 +24,6 @@ router.get("/list", function (req, res, next) {
   */
   db.Member.findAll()
     .then((result) => {
-      console.log("전체 회원 목록: ", result);
       res.render("members-sync/list", { members: result });
     })
     .catch((err) => {
@@ -60,13 +59,9 @@ router.post("/create", function (req, res, next) {
   /*
     신규 회원 DB 등록 처리
   */
-  db.Member.create(memberData)
-    .then((savedMember) => {
-      console.log("신규 저장된 데이터: ", savedMember);
-    })
-    .catch((err) => {
-      next(err);
-    });
+  db.Member.create(memberData).catch((err) => {
+    next(err);
+  });
 
   res.redirect("/members-sync/list");
 });
@@ -80,11 +75,26 @@ router.get("/modify/:id", function (req, res, next) {
     와일드카드 방식으로 전달된 사용자 고유 번호 정보 수집
       - 해당 번호로 단일 사용자 정보 불러오기 -> findOne() 메소드 사용
   */
-  const userId = req.params.id;
+  const id = req.params.id;
 
-  db.Member.findOne({ where: { id: userId } }).then((memberData) => {
-    console.log("단일 회원 정보: ", memberData);
+  db.Member.findOne({ where: { id: id } }).then((memberData) => {
     res.render("members-sync/modify", { member: memberData });
+  });
+});
+
+/* 
+    회원 정보 수정 처리
+        - 호출 주소: http://localhost:3000/members/modify
+*/
+router.post("/modify/:id", function (req, res, next) {
+  const id = req.params.id;
+  const updateMemberData = {
+    userid: req.body.userId,
+    username: req.body.userName,
+  };
+
+  db.Member.update(updateMemberData, { where: { id: id } }).then(() => {
+    res.redirect("/members-sync/list");
   });
 });
 
