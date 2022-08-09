@@ -84,7 +84,7 @@ router.get("/modify/:id", function (req, res, next) {
 
 /* 
     회원 정보 수정 처리
-        - 호출 주소: http://localhost:3000/members/modify
+        - 호출 주소: http://localhost:3000/members-sync/modify/:id
 */
 router.post("/modify/:id", function (req, res, next) {
   const id = req.params.id;
@@ -96,6 +96,16 @@ router.post("/modify/:id", function (req, res, next) {
   db.Member.update(updateMemberData, { where: { id: id } }).then(() => {
     res.redirect("/members-sync/list");
   });
+});
+
+/* 
+    회원 정보 삭제 처리
+        - 호출 주소: http://localhost:3000/members-sync/delete?id=1
+*/
+router.get("/delete", function (req, res, next) {
+  const id = req.query.id;
+  db.Member.destroy({ where: { id: id } });
+  res.redirect("/members-sync/list");
 });
 
 module.exports = router;
