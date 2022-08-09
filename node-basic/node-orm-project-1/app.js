@@ -15,6 +15,9 @@ var usersRouter = require("./routes/users");
 // 동기 처리 방식의 회원 정보 관리 routing 파일 등록
 var membersSyncRouter = require("./routes/members-sync");
 
+// 비동기 처리 방식의 회원 정보 관리 routing 파일 등록
+var membersAsyncRouter = require("./routes/members-async");
+
 var app = express();
 
 // MySQL DB 서버와 동기화 처리 및 모델 기반 물리 테이블 생성 처리 제공 - 서버 실행 시 테이블 생성됨
@@ -35,6 +38,9 @@ app.use("/users", usersRouter);
 
 // 동기 처리 방식의 회원 정보 관리 routing 파일 기본 url 주소 설정
 app.use("/members-sync", membersSyncRouter);
+
+// 비동기 처리 방식의 회원 정보 관리 routing 파일 기본 url 주소 설정
+app.use("/members-async", membersAsyncRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
